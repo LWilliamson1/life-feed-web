@@ -28,8 +28,8 @@ var config = {
             dest: "build/css"
         },
         images: {
-            src: ["src/images/**/*.jpg", "src/images/**/*.jpeg", "src/images/**/*.png"],
-            dest: "build/images"
+            src: ["src/img/**/*.jpg", "src/img/**/*.jpeg", "src/img/**/*.png"],
+            dest: "build/img"
         },
         less: {
             src: ["src/less/**/*.less", "!src/less/includes/**"],

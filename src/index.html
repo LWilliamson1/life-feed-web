@@ -1,33 +1,69 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8" />
-    <title>Simple gulp template</title>
+<!doctype html>
+<html>
+  <head>
+    <title>Life Feed</title>
+    <link rel="stylesheet" type="text/css" href="css/styles.css">
+    <link href="css/main.min.css" rel="stylesheet" />
+  </head>
+
     <!-- bower:css -->
     <!-- endinject -->
-    <link href="css/main.min.css" rel="stylesheet" />
-</head>
-<body>
-    <div class="container">
-        <h1>Simple <strong>gulp</strong> template</h1>
-        <div class="description">
-            <p>A simple <a href="http://gulpjs.com">gulp</a> template that provides</p>
-            <ul>
-                <li>HTML minification.</li>
-                <li>JavaScript and CSS minification and concatenation.</li>
-                <li>Source map support.</li>
-                <li>Simple client-side dependency installation with <a href="http://bower.io">Bower</a>.</li>
-                <li><a href="http://getbootstrap.com">Bootstrap</a> as a less mixin library.</li>
-                <li><a href="http://browsersync.io">BrowserSync</a> support.</li>
-            </ul>
-        </div>
-        <div class="button-holder">
-            <a class="cta" href="http://jairtrejo.mx/blog/2014/11/baby-steps-with-gulp"><i class="fa fa-book"></i>&ensp;Read the blog post</a>
-            <a class="cta" href="http://github.com/jairtrejo/simple-gulp-template"><i class="fa fa-github"></i>&ensp;Check the repo</a>
-        </div>
+  <body>
+    <div id="login-container" class="pre-auth">
+      This application requires access to your YouTube account.
+      Please <a href="#" id="login-link">authorize</a> to continue.
     </div>
+    <div class="status">
+      Status: <input readonly="readonly" size="60" val="Unknown"/>
+    </div>
+    <div class="authenticate hidden">
+      <img src="http://ttv-api.s3.amazonaws.com/assets/connect_dark.png" class="twitch-connect" href="#" />
+    </div>
+    <h2 class="authenticated hidden">Authenticated</h2>
+    <div class="authenticated hidden">
+      <div id="logout">
+        <button>Log Out</button>
+      </div>
+
+      <div id="get-name">
+        <button>Get TwitchTV Name</button>
+        <input readonly="readonly" size="50" value="Unknown"/>
+      </div>
+
+      <div id="get-stream-key">
+        <button>Get TwitchTV Stream Key</button>
+        <input readonly="readonly" size="50" value="Unknown"/>
+      </div>
+    </div>
+    <div id="video-container"></div>
+    <div class="button-container">
+      <button id="prev-button" class="paging-button" onclick="previousPage();">Previous Page</button>
+      <button id="next-button" class="paging-button" onclick="nextPage();">Next Page</button>
+    </div>
+
+        <div class="row">
+            <div class="col-md-12" style="
+  width: 100%;
+  text-align: center;                              
+">                     
+               <!-- <form action="#">                                      
+                    <p><input type="text" id="search" placeholder="Type something..." autocomplete="off" class="form-control" /></p>
+                    <p><input type="submit" value="Search" class="form-control btn btn-primary w100"></p>
+                </form>
+		-->
+		<div>
+		<img src="http://s.jtvnw.net/jtv_user_pictures/hosted_images/Twitch_BlackLogo.png" alt="Twitch Logo" style="height:5em;"</img>
+</div>
+		<div id="twitch" style="display : inline-block"></div>
+	<div>
+	<img src="img/YouTube-logo-full_color.png" alt="YouTube Logo" style="height:10em;"></img>
+	</div>	
+	<div id="yt" style="display: inline-block"></div>
+            </div>
+        </div> 
     <!-- bower:js -->
     <!-- endinject -->
-    <script type="text/javascript" src="js/app.min.js"></script>
-</body>
+<script type="text/javascript" src="js/app.min.js"></script>
+    <script src="https://apis.google.com/js/client.js?onload=googleApiClientReady"></script>
+  </body>
 </html>
