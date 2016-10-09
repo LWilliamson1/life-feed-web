@@ -63,7 +63,7 @@ gulp.task("scripts", function(){
     return gulp.src(config.paths.javascript.src)
         .pipe(sourcemaps.init())
         .pipe(concat("app.min.js"))
-        .pipe(uglify())
+        //.pipe(uglify())
         .pipe(sourcemaps.write())
         .pipe(gulp.dest(config.paths.javascript.dest));
 });

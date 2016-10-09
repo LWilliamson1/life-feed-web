@@ -17,8 +17,8 @@
           console.log('display streams');
           //$("#results").append("<div>");
           $.each(user.streams, function(index, item) {
-            $("#twitch").append('<img height="360" width="640" style="margin: 2px" src="'+item.preview.large+'"></img>');
-              <!--'<iframe src="http://player.twitch.tv/?autoplay=false&channel='+item.channel.name+'" height="720" width="1280" frameborder="0"  scrolling="no" allowfullscreen="true" autoplay="false"></iframe>'-->
+            $("#twitch").append('<div class="col-xs-12 col-md-6"><img src="'+item.preview.large+'"></img></div>');
+//              '<iframe src="http://player.twitch.tv/?autoplay=false&channel='+item.channel.name+'" height="720" width="1280" frameborder="0"  scrolling="no" allowfullscreen="true" autoplay="false"></iframe>'
 
           });
           $("#results").append("</div>");
@@ -52,8 +52,8 @@
 		console.log(user);
 		$("#results").append("<div>");
 		$.each(user.streams, function(index, item) {
-			$("#results").append('<img height="360" width="640" style="margin: 2px" src="'+item.preview.large+'"></img>');
-<!--'<iframe src="http://player.twitch.tv/?autoplay=false&channel='+item.channel.name+'" height="720" width="1280" frameborder="0"  scrolling="no" allowfullscreen="true" autoplay="false"></iframe>'-->
+			$("#results").append('<div class="col-xs-12 col-sm-6"><img src="'+item.preview.large+'"></img></div>');
+//<!--'<iframe src="http://player.twitch.tv/?autoplay=false&channel='+item.channel.name+'" height="720" width="1280" frameborder="0"  scrolling="no" allowfullscreen="true" autoplay="false"></iframe>'-->
 
 		});
 		
