@@ -13,6 +13,8 @@ var gulp           = require("gulp"),
     glob           = require("glob"),
     browserSync    = require("browser-sync");
 
+var webserver = require('gulp-webserver');
+
 var config = {
     paths: {
         html: {
@@ -73,8 +75,7 @@ gulp.task("css", function(){
         .pipe(sourcemaps.init())
         .pipe(cssmin())
         .pipe(sourcemaps.write("."))
-        .pipe(gulp.dest(config.paths.css.dest))
-        .pipe(browserSync.reload({stream: true}));
+        .pipe(gulp.dest(config.paths.css.dest));
 });
 
 gulp.task("images", function(){
@@ -97,14 +98,13 @@ gulp.task("less", function(){
         .pipe(less({
             paths: ["bower_components/bootstrap/less"]
         }))
-        .pipe(uncss({
-            html: glob.sync(config.paths.html.src),
-        }))
+//        .pipe(uncss({
+//            html: glob.sync(config.paths.html.src),
+//        }))
         .pipe(concat("main.min.css"))
         .pipe(sourcemaps.write("."))
         .pipe(gulp.dest(config.paths.css.dest))
-        .pipe(filter("**/*.css"))
-        .pipe(browserSync.reload({stream: true}));
+        .pipe(filter("**/*.css"));
 });
 
 gulp.task("verbatim", function(){
@@ -120,15 +120,32 @@ gulp.task("browser-sync", function() {
     });
 });
 
+gulp.task('webserver', function() {
+  //var stream = gulp.src('app').pipe(webserver());
+  //stream.emit('kill');
+  gulp.src('build')
+    .pipe(webserver({
+      //path: './app/index.html',
+      //fallback: 'app/index.html',
+      port:3000,
+      livereload: true,
+      directoryListing: false,
+      open: true
+    }));
+    //stream.emit('kill');
+});
+
 gulp.task("build", ["bower", "html", "scripts", "css", "less", "images", "verbatim"]);
 
-gulp.task("default", ["build", "browser-sync"], function(){
-    gulp.watch(config.paths.html.src, ["html", browserSync.reload]);
-    gulp.watch(config.paths.javascript.src, ["scripts", browserSync.reload]);
-    gulp.watch(config.paths.bower.src, ["bower", browserSync.reload]);
-    gulp.watch(config.paths.images.src, ["images", browserSync.reload]);
-    gulp.watch(config.paths.verbatim.src, ["verbatim", browserSync.reload]);
+gulp.task("default", ["build", "webserver"]);
 
-    gulp.watch(config.paths.css.src, ["css"]);
-    gulp.watch(config.paths.less.src, ["less"]);
-});
+//gulp.task("default", ["build", "browser-sync"], function(){
+//    gulp.watch(config.paths.html.src, ["html", browserSync.reload]);
+//    gulp.watch(config.paths.javascript.src, ["scripts", browserSync.reload]);
+//    gulp.watch(config.paths.bower.src, ["bower", browserSync.reload]);
+//    gulp.watch(config.paths.images.src, ["images", browserSync.reload]);
+//    gulp.watch(config.paths.verbatim.src, ["verbatim", browserSync.reload]);
+//
+//    gulp.watch(config.paths.css.src, ["css"]);
+//    gulp.watch(config.paths.less.src, ["less"]);
+//});

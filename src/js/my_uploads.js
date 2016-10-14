@@ -29,7 +29,7 @@ function getUserActivitiesList() {
 
   request.execute(function(response) {
     var results = response.result;
-    console.log(results);
+    //console.log(results);
    // $("#yt").html("");
     $.each(results.items, function(index, item) {
       if(item.contentDetails.upload){
@@ -65,7 +65,7 @@ function requestUserUploadsPlaylistId() {
 */  
      request.execute(function(response) {
           var results = response.result;
-	console.log(results);
+	//console.log(results);
           $("#results").html("");
           $.each(results.items, function(index, item) {
 		if(item.contentDetails.upload){
@@ -82,7 +82,7 @@ function requestUserUploadsPlaylistId() {
     part: 'contentDetails'
   });
   request.execute(function(response) {
-	console.log(response);
+	//console.log(response);
     playlistId = response.result.items[0].contentDetails.relatedPlaylists.uploads;
     requestVideoPlaylist(playlistId);
   });

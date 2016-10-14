@@ -4,6 +4,7 @@
     <title>Life Feed</title>
     <link rel="stylesheet" type="text/css" href="css/styles.css">
     <link href="css/main.min.css" rel="stylesheet" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
   </head>
 
     <!-- bower:css -->
@@ -44,18 +45,17 @@
         </div><!--/.nav-collapse -->
       </div>
     </nav>
-    <div class="container-fluid">
+      
+    <div class="container-fluid main-container">
     <div id="login-container" class="pre-auth">
       This application requires access to your YouTube account.
       Please <a href="#" id="login-link">authorize</a> to continue.
     </div>
-    <div class="status">
-      Status: <input readonly="readonly" size="60" val="Unknown"/>
-    </div>
+
     <div class="authenticate hidden">
       <img src="http://ttv-api.s3.amazonaws.com/assets/connect_dark.png" class="twitch-connect" href="#" />
     </div>
-    <h2 class="authenticated hidden">Authenticated</h2>
+
     <div class="authenticated hidden">
 
       <div id="logout">
@@ -64,13 +64,9 @@
 
       <div id="get-name">
         <button>Get TwitchTV Name</button>
-        <input readonly="readonly" size="50" value="Unknown"/>
+        <input readonly="readonly" value="Unknown"/>
       </div>
 
-      <div id="get-stream-key">
-        <button>Get TwitchTV Stream Key</button>
-        <input readonly="readonly" size="50" value="Unknown"/>
-      </div>
     </div>
     <div id="video-container"></div>
     <div class="button-container">
@@ -89,10 +85,12 @@
                 </form>
 		-->
 		<div>
-		<img src="http://s.jtvnw.net/jtv_user_pictures/hosted_images/Twitch_BlackLogo.png" alt="Twitch Logo" style="height:5em;"</img>
-</div>
-		<div id="twitch" style="display : inline-block"></div>
-	<div>
+<!--            <img src="http://s.jtvnw.net/jtv_user_pictures/hosted_images/Twitch_BlackLogo.png" alt="Twitch Logo" style="height:5em;"/>-->
+            <h3><img class="glitchy-logo" src="http://s.jtvnw.net/jtv_user_pictures/hosted_images/GlitchIcon_purple.png" alt="Glitch" /><span id="twitch-username"></span></h3>
+            
+        </div>
+		<div id="twitch"></div>
+	<div class="col-xs-12">
 	<img src="img/YouTube-logo-full_color.png" alt="YouTube Logo" style="height:10em;"></img>
 	</div>	
 	<div id="yt"></div>
