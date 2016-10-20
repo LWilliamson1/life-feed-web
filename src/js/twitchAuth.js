@@ -1,14 +1,6 @@
 
   // Initialize. If we are already logged in, there is no
   // need for the connect button
-
-    var loadVideo = function(event) {
-      console.log(event.target.id);
-      
-      $("#twitch").append('<div class="col-xs-12" style="padding-bottom:1rem"><div class="embed-responsive embed-responsive-16by9"><iframe class="embed-responsive-item" src="http://player.twitch.tv/?autoplay=false&channel='+event.target.id+'" allowfullscreen="true" </iframe></div></div>');
-      
-    }
-
     Twitch.init({clientId: 'sse4niadmptvtv0pcpupi3lpbuzwlt9'}, function(error, status) {
         if (status.authenticated) {
           // we're logged in :)
@@ -26,30 +18,39 @@
           $('.authenticate').removeClass('hidden');
         }
         Twitch.api({method: 'streams/followed'}, function(error, user){
-          console.log('display streams');
+            console.log('display streams');
           //$("#results").append("<div>");
 //          $.each(user.streams, function(index, item) {
 //            $("#twitch").append('<div class="col-xs-6 col-sm-4 col-md-3 col-lg-2" style="padding-bottom:1rem"><div class="embed-responsive embed-responsive-16by9"><iframe class="embed-responsive-item" src="http://player.twitch.tv/?autoplay=false&channel='+item.channel.name+'" allowfullscreen="true" </iframe></div></div>');
         
-        $.each(user.streams, function(index, item) {
-            $("#twitch").append('<div class="col-xs-6 col-sm-4 col-md-3 col-lg-2"> <img id="'+item.channel.display_name+'" class="images-responsive img-fluid" onclick=loadVideo(event) src="'+item.preview.large+'"></img></div>');
-              
-//              <img class="images-responsive img-fluid" src="'+item.preview.large+'"></img>
-//              '<iframe src="http://player.twitch.tv/?autoplay=false&channel='+item.channel.name+'" height="720" width="1280" frameborder="0"  scrolling="no" allowfullscreen="trues" autoplay="false"></iframe>'
+            $.each(user.streams, function(index, item) {
+                $("#twitch").append('<div class="col-xs-6 col-sm-4 col-md-3 col-lg-2"> <img id="'+item.channel.display_name+'" class="twitch-thumb images-responsive img-fluid tile-spacing" src="'+item.preview.large+'"></img></div>');
 
-          });
-          $("#results").append("</div>");
+    //              <img class="images-responsive img-fluid" src="'+item.preview.large+'"></img>
+    //              '<iframe src="http://player.twitch.tv/?autoplay=false&channel='+item.channel.name+'" height="720" width="1280" frameborder="0"  scrolling="no" allowfullscreen="trues" autoplay="false"></iframe>'
+
+            });
+
+            $("#results").append("</div>");
+
+            $('#twitch img').on('click', function(){
+                $("#twitch").append('<div id="twitch-player-container" class="col-xs-12 tile-spacing"><div class="embed-responsive player-height"><iframe class="embed-responsive-item" src="http://player.twitch.tv/?autoplay=false&channel='+event.target.id+'" allowfullscreen="true" </iframe></div></div>');
+                
+                $('html, body').animate({
+                    scrollTop: $("#twitch-player-container").offset().top - 50
+                }, 2000);
+            });
         });
       });
 
 
-      $('.twitch-connect').click(function() {
+      $('.twitch-connect').on('click', function() {
         Twitch.login({
           scope: ['user_read', 'channel_read']
         });
       });
 
-      $('#logout button').click(function() {
+      $('#logout button').on('click', function() {
         Twitch.logout();
 
         // Reload page and reset url hash. You shouldn't
@@ -57,31 +58,22 @@
         window.location = window.location.pathname
       })
 
-      $('#get-name button').click(function() {
+      $('#get-name button').on('click', function() {
         Twitch.api({method: 'user'}, function(error, user) {
-          $('#get-name input').val(user.display_name);
-	var name = user.display_name;
-	Twitch.api({method: '/users/'+name+'/follows/channels', verb:'GET'}, function(error, user){
-		console.log(user);
-	});
-          
+            $('#get-name input').val(user.display_name);
+        
+//            Twitch.api({method: 'streams/followed'}, function(error, user){
+//                $("#results").append("<div>");
+//                $.each(user.streams, function(index, item) {
+//                    $("#results").append('<div class="col-xs-12 col-sm-6 col-md-3"><img class="twitch-thumb images-responsive img-fluid" src="'+item.preview.large+'"></img></div>');
+//                  //<!--'<iframe src="http://player.twitch.tv/?autoplay=false&channel='+item.channel.name+'" height="720" width="1280" frameborder="0"  scrolling="no" allowfullscreen="true" autoplay="false"></iframe>'-->
+//                });
+//                $("#results").append("</div>");
+//            });
+        });
+      });
 
-	
-	Twitch.api({method: 'streams/followed'}, function(error, user){
-		console.log(user);
-		$("#results").append("<div>");
-		$.each(user.streams, function(index, item) {
-			$("#results").append('<div class="col-xs-12 col-sm-6 col-md-3"><img class="images-responsive img-fluid" src="'+item.preview.large+'"></img></div>');
-//<!--'<iframe src="http://player.twitch.tv/?autoplay=false&channel='+item.channel.name+'" height="720" width="1280" frameborder="0"  scrolling="no" allowfullscreen="true" autoplay="false"></iframe>'-->
-
-		});
-		
-		$("#results").append("</div>");
-	});
-	 });
-      })
-
-
+      
       $('#get-stream-key button').click(function() {
         Twitch.api({method: 'channel'}, function(error, channel) {
           $('#get-stream-key input').val(channel.stream_key);
