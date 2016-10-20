@@ -24,7 +24,7 @@
 //            $("#twitch").append('<div class="col-xs-6 col-sm-4 col-md-3 col-lg-2" style="padding-bottom:1rem"><div class="embed-responsive embed-responsive-16by9"><iframe class="embed-responsive-item" src="http://player.twitch.tv/?autoplay=false&channel='+item.channel.name+'" allowfullscreen="true" </iframe></div></div>');
         
             $.each(user.streams, function(index, item) {
-                $("#twitch").append('<div class="col-xs-6 col-sm-4 col-md-3 col-lg-2"> <img id="'+item.channel.display_name+'" class="twitch-thumb images-responsive img-fluid tile-spacing" src="'+item.preview.large+'"></img></div>');
+                $("#twitch").append('<div class="col-xs-6 col-sm-4 col-md-3 col-lg-2"><h3>'+item.channel.display_name+'</h3><img id="'+item.channel.display_name+'" class="twitch-thumb images-responsive img-fluid tile-spacing" src="'+item.preview.large+'"></img></div>');
 
     //              <img class="images-responsive img-fluid" src="'+item.preview.large+'"></img>
     //              '<iframe src="http://player.twitch.tv/?autoplay=false&channel='+item.channel.name+'" height="720" width="1280" frameborder="0"  scrolling="no" allowfullscreen="trues" autoplay="false"></iframe>'
