@@ -1,105 +1,114 @@
 <!doctype html>
 <html>
-  <head>
-    <title>Life Feed</title>
-    <link rel="stylesheet" type="text/css" href="css/styles.css">
-    <link href="css/main.min.css" rel="stylesheet" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
-  </head>
-
-    <!-- bower:css -->
-    <!-- endinject -->
-  <body>
-      
-    <nav class="navbar navbar-inverse navbar-fixed-top">
-      <div class="container">
-        <div class="navbar-header">
-          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-          <a class="navbar-brand" href="#">Project name</a>
-        </div>
-        <div id="navbar" class="navbar-collapse collapse">
-          <ul class="nav navbar-nav">
-            <li class="active"><a href="#">Home</a></li>
-            <li><a href="#about">About</a></li>
-            <li><a href="#contact">Contact</a></li>
-          </ul>
-          <ul class="nav navbar-nav navbar-right">
-            <li class="dropdown">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
-              <ul class="dropdown-menu">
-                <li><a href="#">Action</a></li>
-                <li><a href="#">Another action</a></li>
-                <li><a href="#">Something else here</a></li>
-                <li role="separator" class="divider"></li>
-                <li class="dropdown-header">Nav header</li>
-                <li><a href="#">Separated link</a></li>
-                <li><a href="#">One more separated link</a></li>
-              </ul>
-            </li>
-           </ul>
-        </div><!--/.nav-collapse -->
-      </div>
-    </nav>
-      
-    <div class="container-fluid main-container">
-    <div id="login-container" class="pre-auth">
-      This application requires access to your YouTube account.
-      Please <a href="#" id="login-link">authorize</a> to continue.
-    </div>
-
-    <div class="authenticate hidden">
-      <img src="http://ttv-api.s3.amazonaws.com/assets/connect_dark.png" class="twitch-connect" href="#" />
-    </div>
-
-    <div class="authenticated hidden">
-
-      <div id="logout">
-        <button  class="btn-primary">Log Out</button>
-      </div>
-
-      <div id="get-name">
-        <button>Get TwitchTV Name</button>
-        <input readonly="readonly" value="Unknown"/>
-      </div>
-
-    </div>
-    <div id="video-container"></div>
-    <div class="button-container">
-      <button id="prev-button" class="paging-button" onclick="previousPage();">Previous Page</button>
-      <button id="next-button" class="paging-button" onclick="nextPage();">Next Page</button>
-    </div>
-
-        <div class="row">
-            <div class="col-md-12" style="
-  width: 100%;
-  text-align: center;                              
-">                     
-               <!-- <form action="#">                                      
-                    <p><input type="text" id="search" placeholder="Type something..." autocomplete="off" class="form-control" /></p>
-                    <p><input type="submit" value="Search" class="form-control btn btn-primary w100"></p>
-                </form>
-		-->
-		<div>
-<!--            <img src="http://s.jtvnw.net/jtv_user_pictures/hosted_images/Twitch_BlackLogo.png" alt="Twitch Logo" style="height:5em;"/>-->
-            <h3><img class="glitchy-logo" src="http://s.jtvnw.net/jtv_user_pictures/hosted_images/GlitchIcon_purple.png" alt="Glitch" /><span id="twitch-username"></span></h3>
-            
-        </div>
-		<div id="twitch"></div>
-	<div class="col-xs-12">
-	<img src="img/YouTube-logo-full_color.png" alt="YouTube Logo" style="height:10em;"></img>
-	</div>	
-	<div id="yt"></div>
-            </div>
-        </div> 
-      </div>
-    <!-- bower:js -->
-    <!-- endinject -->
-<script type="text/javascript" src="js/app.min.js"></script>
-    <script src="https://apis.google.com/js/client.js?onload=googleApiClientReady"></script>
-  </body>
+	<head>
+		<title>Life Feed</title>
+		<link rel="stylesheet" type="text/css" href="css/styles.css">
+		<link href="css/main.min.css" rel="stylesheet" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+	</head>
+	<!-- bower:css -->
+	<!-- endinject -->
+	<body>
+		<nav class="navbar navbar-inverse navbar-fixed-top">
+			<div class="container">
+				<div class="navbar-header">
+					<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+					<span class="sr-only">Toggle navigation</span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					</button>
+					<a class="navbar-brand" href="#">Project name</a>
+				</div>
+				<div id="navbar" class="navbar-collapse collapse">
+					<ul class="nav navbar-nav">
+						<li class="active"><a href="#">Home</a></li>
+						<li><a href="#about">About</a></li>
+						<li><a href="#contact">Contact</a></li>
+					</ul>
+					<ul class="nav navbar-nav navbar-right">
+						<li class="dropdown">
+							<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
+							<ul class="dropdown-menu">
+								<li><a href="#">Action</a></li>
+								<li><a href="#">Another action</a></li>
+								<li><a href="#">Something else here</a></li>
+								<li role="separator" class="divider"></li>
+								<li class="dropdown-header">Nav header</li>
+								<li><a href="#">Separated link</a></li>
+								<li><a href="#">One more separated link</a></li>
+							</ul>
+						</li>
+					</ul>
+				</div>
+				<!--/.nav-collapse -->
+			</div>
+		</nav>
+		<div class="container-fluid main-container">
+			<div id="login-container" class="pre-auth">
+				This application requires access to your YouTube account.
+				Please <a href="#" id="login-link">authorize</a> to continue.
+			</div>
+			<div class="authenticate hidden">
+				<img src="http://ttv-api.s3.amazonaws.com/assets/connect_dark.png" class="twitch-connect" href="#" />
+			</div>
+			<div class="authenticated hidden">
+				<div id="logout">
+					<button  class="btn-primary">Log Out</button>
+				</div>
+				<div id="get-name">
+					<button>Get TwitchTV Name</button>
+					<input readonly="readonly" value="Unknown"/>
+				</div>
+			</div>
+			<div id="video-container"></div>
+			<div class="button-container">
+				<button id="prev-button" class="paging-button" onclick="previousPage();">Previous Page</button>
+				<button id="next-button" class="paging-button" onclick="nextPage();">Next Page</button>
+			</div>
+			<div class="row">
+				<div class="col-md-12" style="
+					width: 100%;
+					text-align: center;                              
+					">
+					<!-- <form action="#">                                      
+						<p><input type="text" id="search" placeholder="Type something..." autocomplete="off" class="form-control" /></p>
+						<p><input type="submit" value="Search" class="form-control btn btn-primary w100"></p>
+						</form>
+						-->
+					<div>
+						<!--            <img src="http://s.jtvnw.net/jtv_user_pictures/hosted_images/Twitch_BlackLogo.png" alt="Twitch Logo" style="height:5em;"/>-->
+						<h3><img class="glitchy-logo" src="http://s.jtvnw.net/jtv_user_pictures/hosted_images/GlitchIcon_purple.png" alt="Glitch" /><span id="twitch-username"></span></h3>
+					</div>
+					<div id="twitch"></div>
+					<div class="col-xs-12">
+						<img src="img/YouTube-logo-full_color.png" alt="YouTube Logo" style="height:10em;"/>
+					</div>
+					<div id="yt"></div>
+				</div>
+			</div>
+		</div>
+		<!-- Modal -->
+		<div class="modal fade" id="myModal" role="dialog">
+			<div class="modal-dialog">
+				<!-- Modal content-->
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal">&times;</button>
+						<h4 class="modal-title">Modal Header</h4>
+					</div>
+					<div class="modal-body">
+						<p>Some text in the modal.</p>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- bower:js -->
+		<!-- endinject -->
+		<script type="text/javascript" src="js/app.min.js"></script>
+		<script src="https://apis.google.com/js/client.js?onload=googleApiClientReady"></script>
+	</body>
 </html>

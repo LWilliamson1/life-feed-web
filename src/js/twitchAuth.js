@@ -24,7 +24,7 @@
 //            $("#twitch").append('<div class="col-xs-6 col-sm-4 col-md-3 col-lg-2" style="padding-bottom:1rem"><div class="embed-responsive embed-responsive-16by9"><iframe class="embed-responsive-item" src="http://player.twitch.tv/?autoplay=false&channel='+item.channel.name+'" allowfullscreen="true" </iframe></div></div>');
         
             $.each(user.streams, function(index, item) {
-                $("#twitch").append('<div class="col-xs-6 col-sm-4 col-md-3 col-lg-2"><h3>'+item.channel.display_name+'</h3><img id="'+item.channel.display_name+'" class="twitch-thumb images-responsive img-fluid tile-spacing" src="'+item.preview.large+'"></img></div>');
+                $("#twitch").append('<div class="col-xs-6 col-sm-4 col-md-3 col-lg-2"><h3>'+item.channel.display_name+'</h3><img id="'+item.channel.display_name+'" class="twitch-thumb images-responsive img-fluid tile-spacing" data-toggle="modal" data-target="#myModal" src="'+item.preview.large+'"/></div>');
 
     //              <img class="images-responsive img-fluid" src="'+item.preview.large+'"></img>
     //              '<iframe src="http://player.twitch.tv/?autoplay=false&channel='+item.channel.name+'" height="720" width="1280" frameborder="0"  scrolling="no" allowfullscreen="trues" autoplay="false"></iframe>'
@@ -34,11 +34,12 @@
             $("#results").append("</div>");
 
             $('#twitch img').on('click', function(){
-                $("#twitch").append('<div id="twitch-player-container" class="col-xs-12 tile-spacing"><div class="embed-responsive player-height"><iframe class="embed-responsive-item" src="http://player.twitch.tv/?autoplay=false&channel='+event.target.id+'" allowfullscreen="true" </iframe></div></div>');
-                
-                $('html, body').animate({
-                    scrollTop: $("#twitch-player-container").offset().top - 50
-                }, 2000);
+                console.log($("#modal-body").html());
+                $(".modal-body").html('<div id="twitch-player-container" class="col-xs-12 tile-spacing"><div class="embed-responsive player-height"><iframe class="embed-responsive-item" src="http://player.twitch.tv/?autoplay=false&channel='+event.target.id+'" allowfullscreen="true" </iframe></div></div>');
+//                
+//                $('html, body').animate({
+//                    scrollTop: $("#twitch-player-container").offset().top - 50
+//                }, 2000);
             });
         });
       });
