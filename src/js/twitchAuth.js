@@ -34,7 +34,6 @@
             $("#results").append("</div>");
 
             $('#twitch img').on('click', function(){
-                console.log($("#modal-body").html());
                 $(".modal-body").html('<div id="twitch-player-container" class="col-xs-12 tile-spacing"><div class="embed-responsive player-height"><iframe class="embed-responsive-item" src="http://player.twitch.tv/?autoplay=false&channel='+event.target.id+'" allowfullscreen="true" </iframe></div></div>');
 //                
 //                $('html, body').animate({

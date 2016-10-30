@@ -35,6 +35,11 @@ function resetVideoHeight() {
     $(".video").css("height", $("#results").width() * 9/16);
 }
 
+$('#myModal').on('hidden.bs.modal', function () {
+  // do something…
+  $(".modal-body").empty();
+})
+
 function init() {
     gapi.client.setApiKey("AIzaSyDL2AVkciuMYZtFOhJvckWgSZys60xV0L0");
     gapi.client.load("youtube", "v3", function() {

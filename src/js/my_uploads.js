@@ -29,16 +29,21 @@ function getUserActivitiesList() {
 
   request.execute(function(response) {
     var results = response.result;
-    //console.log(results);
+    console.log(results);
    // $("#yt").html("");
     $.each(results.items, function(index, item) {
       if(item.contentDetails.upload){
-        $.get("tpl/item.html", function(data) {
-          $("#yt").append(tplawesome(data, [{"title":"title", "videoid":item.contentDetails.upload.videoId}]));
-        });
+        $("#yt").append('<div class="col-xs-6 col-sm-4 col-md-3 col-lg-2"><h3>'+'channel name'+'</h3><img id="'+item.contentDetails.upload.videoId+'" class="yt-thumb images-responsive img-fluid tile-spacing" data-toggle="modal" data-target="#myModal" src="http://img.youtube.com/vi/'+item.contentDetails.upload.videoId+'/0.jpg"/></div>');
       }
     });
+  
+    $('#yt img').on('click', function(){
+        console.log('click');
+        $(".modal-body").html('<div class="col-xs-12"><div class="embed-responsive embed-responsive-16by9"><iframe class="embed-responsive-item" src="//www.youtube.com/embed/'+event.target.id+'" allowfullscreen="true"></iframe></div></div>');
+      });
+    
     resetVideoHeight();
+    
   });
 
 }
@@ -70,7 +75,7 @@ function requestUserUploadsPlaylistId() {
           $.each(results.items, function(index, item) {
 		if(item.contentDetails.upload){
             $.get("tpl/item.html", function(data) {
-                $("#results").append(tplawesome(data, [{"title":"title", "videoid":item.contentDetails.upload.videoId}]));
+                $("#results").append('tplawesome(data, [{"title":"title", "videoid":item.contentDetails.upload.videoId}])');
             });
 	}
           });
