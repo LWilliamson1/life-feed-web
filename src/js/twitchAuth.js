@@ -34,7 +34,7 @@
             $("#results").append("</div>");
 
             $('#twitch img').on('click', function(){
-                $(".modal-body").html('<div id="twitch-player-container" class="col-xs-12 tile-spacing"><div class="embed-responsive player-height"><iframe class="embed-responsive-item" src="http://player.twitch.tv/?autoplay=false&channel='+event.target.id+'" allowfullscreen="true" </iframe></div></div>');
+                $(".modal-body").html('<div id="twitch-player-container" class="col-xs-12"><div class="embed-responsive player-height"><iframe class="embed-responsive-item" src="http://player.twitch.tv/?autoplay=false&channel='+event.target.id+'" allowfullscreen="true" </iframe></div></div>');
 //                
 //                $('html, body').animate({
 //                    scrollTop: $("#twitch-player-container").offset().top - 50
